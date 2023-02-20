@@ -6,20 +6,26 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormSignInComponent } from './authentication/pages/components/form-sign-in/form-sign-in.component';
+import { ThemesComponent } from './authentication/pages/components/themes/themes.component';
 import { SignInComponent } from './authentication/pages/sign-in/sign-in.component';
+import { HomeComponent } from './home/home.component';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignInComponent,
-    FormSignInComponent
+    FormSignInComponent,
+    HomeComponent,
+    ThemesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    StoreModule.forRoot({}, {})
   ],
   providers: [],
   bootstrap: [AppComponent]

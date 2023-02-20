@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AuthenticationService } from 'src/app/authentication/authentication.service';
 import { ISignInCredentials } from 'src/app/interfaces/sign-in.interface';
 import { User } from 'src/app/interfaces/user.interface';
@@ -9,6 +9,7 @@ import { User } from 'src/app/interfaces/user.interface';
 })
 export class FormSignInComponent {
 
+  @Input() themes: any
   public loading: boolean = false
   public signInCredentials: ISignInCredentials = {
     email: '',
@@ -19,10 +20,21 @@ export class FormSignInComponent {
   constructor(private readonly authenticationService: AuthenticationService) {}
 
   signIn() {
+    if (!this.signInCredentials.email || !this.signInCredentials.password) {
+      window.alert('Preencha todos os campos.')
+      return
+    }
+
     this.loading = true
     const user = this.authenticationService.signIn(this.signInCredentials).subscribe(result => result)
+
+
     setTimeout(() => {
+      this.signInCredentials = {
+        email: '',
+        password: ''
+      }
       this.loading = false
-    }, 5000);
+    }, 2000);
   }
 }
