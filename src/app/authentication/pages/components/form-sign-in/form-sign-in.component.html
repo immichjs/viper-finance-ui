@@ -1,0 +1,30 @@
+<section class="flex flex-col gap-6 bg-slate-50 w-96 h-96 rounded p-6">
+  <div class="flex justify-center">
+    <img src="/assets/viper-finance-logo.png" alt="Logo Viper Finance" width="48">
+  </div>
+
+  <form class="flex flex-col box-border h-full" (ngSubmit)="signIn()">
+    <div class=" flex w-full flex-col gap-2">
+      <input type="email"
+        class="text-emerald-800 font-medium tracking-widest text-xs text-center bg-slate-50 focus:bg-emerald-50 outline-none border-2 focus:border-emerald-600 hover:border-emerald-600 transition duration-200 p-3 rounded"
+        placeholder="Email" [(ngModel)]="signInCredentials.email" [ngModelOptions]="{standalone:true}">
+      <input type="password"
+        class="text-emerald-800 font-medium tracking-widest text-xs text-center bg-slate-50 focus:bg-emerald-50 outline-none border-2 focus:border-emerald-600 hover:border-emerald-600 transition duration-200 p-3 rounded"
+        placeholder="Senha" [(ngModel)]="signInCredentials.password" [ngModelOptions]="{ standalone:true }">
+    </div>
+
+    <div class="flex justify-between mt-4">
+      <a class="underline text-xs text-gray-400 hover:text-emerald-600" [routerLink]="['/signup']">Não
+        estou cadastro</a>
+      <a class="underline text-xs text-gray-400 hover:text-emerald-600">Esqueci minha
+        senha</a>
+    </div>
+
+    <button
+      class="bg-emerald-600 hover:bg-emerald-700 transition duration-200 text-slate-50 p-3 rounded mt-auto uppercase font-medium text-xs"
+      [ngClass]="{ 'rounded-full w-10 ml-auto mr-auto mb-0': loading }">
+      <div class="w-4 h-4 animate-spin border-r-2 rounded-full border-slate-50 " *ngIf="loading"></div>
+      <span *ngIf="!loading">Entrar</span>
+    </button>
+  </form>
+</section>
