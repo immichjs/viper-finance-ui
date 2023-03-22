@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/authentication/authentication.service';
 import { ISignInCredentials } from 'src/app/interfaces/sign-in.interface';
 import { User } from 'src/app/interfaces/user.interface';
@@ -17,7 +18,10 @@ export class FormSignInComponent {
   }
   public user?: User;
 
-  constructor(private readonly authenticationService: AuthenticationService) {}
+  constructor(
+    private readonly authenticationService: AuthenticationService,
+    private readonly router: Router
+  ) {}
 
   signIn() {
     if (!this.signInCredentials.email || !this.signInCredentials.password) {
@@ -29,12 +33,16 @@ export class FormSignInComponent {
     const user = this.authenticationService.signIn(this.signInCredentials).subscribe(result => result)
 
 
-    setTimeout(() => {
-      this.signInCredentials = {
-        email: '',
-        password: ''
-      }
+    if (!this.user) {
       this.loading = false
-    }, 2000);
+      this.signInCredentials.password = ''
+      return
+    }
+
+    this.signInCredentials.password = ''
+    this.signInCredentials.email = ''
+    this.loading = false
+
+    this.router.navigate(['/home'])
   }
 }

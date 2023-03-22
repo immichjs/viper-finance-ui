@@ -1,0 +1,30 @@
+<section class="flex flex-col gap-6 bg-slate-50 w-96 h-96 rounded-3xl p-6">
+  <div class="flex justify-center">
+    <img src="/assets/viper-finance-logo.png" alt="Logo Viper Finance" width="48">
+  </div>
+
+  <form class="flex flex-col items-center box-border h-full" (ngSubmit)="signUp()">
+    <div class=" flex w-full flex-col gap-4">
+      <input type="text"
+        class="font-medium tracking-widest text-xs text-center bg-slate-50 focus:bg-emerald-50 outline-none border-2 transition duration-200 p-3 rounded-xl"
+        placeholder="Nome" [(ngModel)]="signUpCredentials.name" [ngModelOptions]="{standalone:true}">
+      <input type="email"
+        class="font-medium tracking-widest text-xs text-center bg-slate-50 focus:bg-emerald-50 outline-none border-2 transition duration-200 p-3 rounded-xl"
+        placeholder="Email" [(ngModel)]="signUpCredentials.email" [ngModelOptions]="{standalone:true}">
+      <input type="password"
+        class="font-medium tracking-widest text-xs text-center bg-slate-50 focus:bg-emerald-50 outline-none border-2 transition duration-200 p-3 rounded-xl"
+        placeholder="Senha" [(ngModel)]="signUpCredentials.password" [ngModelOptions]="{ standalone:true }">
+    </div>
+
+    <div class="w-full flex justify-between mt-4">
+      <a class="underline text-xs text-gray-400" [routerLink]="['/authentication/signin']">Já sou cadastrado</a>
+    </div>
+
+    <button
+      class="flex justify-center items-center w-28 transition ease-in-out duration-500 text-slate-50 p-3 rounded-xl mt-auto uppercase font-medium text-xs"
+      [disabled]="!signUpCredentials.email || !signUpCredentials.password">
+      <div class="w-4 h-4 animate-spin border-r-2 rounded-full border-slate-50 " *ngIf="loading"></div>
+      <span *ngIf="!loading">Entrar</span>
+    </button>
+  </form>
+</section>

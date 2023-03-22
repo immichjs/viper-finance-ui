@@ -1,7 +1,5 @@
-<main class="flex flex-col justify-center items-center h-screen transition ease-in-out duration-200"
-  [ngClass]="{'bg-emerald-800': themes?.emerald, 'bg-gray-800': themes?.gray, 'bg-indigo-800': themes?.indigo, 'bg-purple-800': themes?.purple }">
-  <app-form-sign-in [themes]="themes"></app-form-sign-in>
-  <app-themes [themes]="themes" (themeChanged)="changeTheme($event)"></app-themes>
+<main class="flex flex-col items-center justify-center h-screen bg-zinc-900">
+  <app-form-sign-in></app-form-sign-in>
 
-  <p class="text-xs text-slate-50 mt-4">&copy; 2023 | Todos os direitos reservados.</p>
+  <p class="text-xs text-slate-50 mt-4 font-rubik font-thin">&copy; 2023 | Todos os direitos reservados.</p>
 </main>
